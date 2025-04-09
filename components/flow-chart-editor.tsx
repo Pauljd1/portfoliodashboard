@@ -167,23 +167,25 @@ export function FlowChartEditor() {
   useEffect(() => {
     setIsClient(true)
     
-    // Now it's safe to use localStorage
-    const savedColumns = localStorage.getItem('kanban-columns')
-    const savedTasks = localStorage.getItem('kanban-tasks')
-    
-    if (savedColumns) {
-      try {
-        setColumns(JSON.parse(savedColumns))
-      } catch (e) {
-        console.error('Error parsing saved columns:', e)
+    // Fix: Only access localStorage after confirming we're on the client
+    if (typeof window !== 'undefined') {
+      const savedColumns = localStorage.getItem('kanban-columns')
+      const savedTasks = localStorage.getItem('kanban-tasks')
+      
+      if (savedColumns) {
+        try {
+          setColumns(JSON.parse(savedColumns))
+        } catch (e) {
+          console.error('Error parsing saved columns:', e)
+        }
       }
-    }
-    
-    if (savedTasks) {
-      try {
-        setTasks(JSON.parse(savedTasks))
-      } catch (e) {
-        console.error('Error parsing saved tasks:', e)
+      
+      if (savedTasks) {
+        try {
+          setTasks(JSON.parse(savedTasks))
+        } catch (e) {
+          console.error('Error parsing saved tasks:', e)
+        }
       }
     }
   }, [])
