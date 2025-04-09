@@ -146,7 +146,7 @@ const priorityColors = {
   high: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
 }
 
-export function KanbanBoard() {
+export function FlowChartEditor() {
   // Initialize with default state first
   const [columns, setColumns] = useState<Columns>(initialColumns)
   const [tasks, setTasks] = useState<Tasks>(initialTasks)
